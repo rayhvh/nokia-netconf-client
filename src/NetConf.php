@@ -169,7 +169,7 @@ class NetConf
 
         $data = str_replace('<?xml version="1.0"?>', '', (string)$data);
 
-        $data = new SimpleXMLElement("<{$rootNode}>$data</{$rootNode}>");
+        $data = new SimpleXMLElement("<{$rootNode} xmlns='urn:ietf:params:xml:ns:netconf:base:1.0' xmlns:yang='urn:ietf:params:xml:ns:yang:1'>$data</{$rootNode}>");
 
         foreach ($attributes as $attribute_name=>$attribute_value) {
 
@@ -222,6 +222,7 @@ class NetConf
         foreach ($this->myCapabilities as $capability) {
 
             $helloXML->addChild("capability", $capability);
+            $helloXML->addChild('capability', "urn:ietf:params:netconf:base:1.0");
 
         }
 
